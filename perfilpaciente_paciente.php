@@ -38,7 +38,7 @@ $info_nutri = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p><strong>Sexo:</strong> <?php echo $paciente['sexo']; ?></p>
     <p><strong>Data de Nascimento:</strong> <?php echo $paciente['data_nascimento']; ?></p>
     <p><strong>Idade:</strong> <?php echo $paciente['idade'] . " anos"; ?></p>
-    <p><strong>Altura:</strong> <?php echo $paciente['altura']; ?> m</p>
+    <p><strong>Altura:</strong> <?php echo $paciente['altura']; ?> cm</p>
     <p><strong>Peso:</strong> <?php echo $paciente['peso']; ?> kg</p>
     <p><strong>Seu objetivo:</strong> <?php echo $paciente['objetivo']; ?></p>
 

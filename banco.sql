@@ -6,8 +6,12 @@ CREATE TABLE nutricionista (
   celular VARCHAR(20),
   crn VARCHAR(10),
   endereco VARCHAR(150),
-  senha VARCHAR(255) NOT NULL
+  senha VARCHAR(255) NOT NULL,
+  horario_inicio TIME,
+  horario_fim TIME,
+  dias_semana VARCHAR(100)
 );
+
 
 CREATE TABLE paciente (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +35,7 @@ CREATE TABLE consulta (
   paciente_id INT(11) UNSIGNED NOT NULL,
   nutricionista_id INT(11) UNSIGNED NOT NULL,
   realizada BOOLEAN NOT NULL DEFAULT false,
+  descricao VARCHAR(100) NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id) ON DELETE CASCADE,
   FOREIGN KEY (nutricionista_id) REFERENCES nutricionista(id) ON DELETE CASCADE
 );
@@ -49,3 +54,18 @@ CREATE TABLE info_nutri (
     data DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
+CREATE TABLE dietas_receitas (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    paciente_id INT(11) UNSIGNED NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    objetivo VARCHAR(255) NOT NULL,
+    data_validade DATE NOT NULL,
+    segunda VARCHAR(255),
+    terca VARCHAR(255),
+    quarta VARCHAR(255),
+    quinta VARCHAR(255),
+    sexta VARCHAR(255),
+    sabado VARCHAR(255),
+    domingo VARCHAR(255),
+    FOREIGN KEY (paciente_id) REFERENCES paciente(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

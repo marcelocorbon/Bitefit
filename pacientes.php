@@ -42,7 +42,9 @@ $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php endforeach; ?>
     </tbody>
   </table>
+  <br>
   <a href="cadastro_paciente.php">Cadastrar novo paciente</a>
+  <br>
   <a href="inicio_nutricionista.php">Voltar para o início</a>
 </body>
 </html>

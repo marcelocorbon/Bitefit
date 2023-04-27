@@ -107,7 +107,7 @@ $pacientes = $stmt_pacientes->fetchAll();
         <input type="submit" value="Calcular">
     </form>
     <br>
-    <a href="inicio_nutricionista.php"><button>Voltar</button></a>
+    <a href="inicio_nutricionista.php">Voltar para o ínicio</a>
     <br>
 </body>
 </html>
@@ -128,13 +128,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_paciente'])) {
     $altura = $_POST["altura"];
     $idade = $_POST["idade"];
     $genero = $_POST["sexo"];
-    $imc = $peso / ($altura * $altura);
+    $imc = $peso / (($altura/100)**2);
+    $imc_formatado = number_format($imc, 2, ',', '');
+
     $nivel_atividade = $_POST["atividade"];
 
-    if ($genero == "Masculino") {
-        $taxa_metabolica = 88.36 + (13.4 * $peso) + (4.8 * $altura * 100) - (5.7 * $idade);
+    // Calcula o metabolismo basal
+    if ($genero == 'Feminino') {
+        $taxa_metabolica = (655 + (9.6 * $peso) + (1.8 * $altura) - (4.7 * $idade));
+    } elseif ($sexo == 'Masculino') {
+        $taxa_metabolica = (66 + (13.7 * $peso) + (5 * $altura) - (6.8 * $idade));
     } else {
-        $taxa_metabolica = 447.6 + (9.2 * $peso) + (3.1 * $altura * 100) - (4.3 * $idade);
+        $taxa_metabolica = (88.36 + (13.4 * $peso) + (4.8 * $altura) - (5.7 * $idade));
     }
 
     $gcd = $taxa_metabolica * $nivel_atividade;
@@ -143,12 +148,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_paciente'])) {
     $carboidratos = ($gcd - ($proteinas * 4) - ($gorduras * 9)) / 4;
 
     echo "<br>";
-    echo "Taxa Metabólica Basal: " . number_format($taxa_metabolica, 2) . " calorias<br>";
-    echo "<p>O seu Gasto Calórico Diário é de: " . number_format($gcd, 2) . " calorias por dia.</p>";
+    echo "Taxa Metabólica Basal: " . number_format($taxa_metabolica, 2, ',', '.') . " calorias<br>";
+    echo "<p>O seu gasto calórico diário (GCD) é de: " . number_format($gcd, 2, ',', '.').' calorias por dia<br>';
     echo "Proteínas: " . number_format($proteinas, 2) . " gramas<br>";
     echo "Gorduras: " . number_format($gorduras, 2) . " gramas<br>";
     echo "Carboidratos: " . number_format($carboidratos, 2) . " gramas";
-    echo "<p>Seu IMC é: " . number_format($imc, 2) . "</p>";
+    echo "<p>Seu IMC é: " . $imc_formatado . "</p>";
     if($imc < 18.5){
         $resultado = "Paciente abaixo do peso.";
         echo "<p>Paciente abaixo do peso.</p>";

@@ -113,9 +113,7 @@ if (isset($mensagem)) {
 
     <label for="senha">Comfirme a Senha:</label>
     <input type="password" id="confirmarSenha" name="confirmarSenha" required><br>
-
     <br>
-    
     <button type="submit">Cadastrar</button>
     <button type="button" onclick="window.history.back()">Voltar</button>
   </form>

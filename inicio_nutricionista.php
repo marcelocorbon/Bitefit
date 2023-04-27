@@ -20,7 +20,7 @@ if (!isset($_SESSION['nutricionista_id'])) {
 	<ul>
 	<li><a href="perfil_nutricionista.php">Perfil</a></li>
 		<li><a href="pacientes.php">Lista de Pacientes</a></li>
-		<li><a href="dietas.php">Dietas e Receitas</a></li>
+		<li><a href="listar_dietas_receitas.php">Dietas e Receitas</a></li>
 		<li><a href="calculos.php">Cáculos Nutricionais</a></li>
 		<li><a href="consultas_nutri.php">Consultas</a></li>
 		<li><a href="sobre.php">Sobre</a></li>
